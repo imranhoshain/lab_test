@@ -32,6 +32,9 @@ if(!isset($_SESSION)){
 
     <!-- Custom Fonts -->
     <link href="assets/admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    <!-- My Css File -->
+    <link href="assets/admin/css/style.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

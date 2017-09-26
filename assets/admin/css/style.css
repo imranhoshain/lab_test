@@ -1,0 +1,8 @@
+.thumbnail.layer {
+    height: 480px;
+}
+
+.layer img {
+    height: 260px;
+    width: 94%;
+}

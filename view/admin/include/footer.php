@@ -18,6 +18,9 @@
 <!-- Custom Theme JavaScript -->
 <script src="assets/admin/dist/js/sb-admin-2.js"></script>
 
+<!-- Custom JavaScript -->
+<script src="assets/admin/js/main.js"></script>
+
 </body>
 
 </html>
