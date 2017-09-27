@@ -15,7 +15,7 @@ class Bazar extends Connection{
     private $image;
     private $tmp_name;  
     
-    
+//----------Check All Array Key-----------//   
     public function set($data = array()){
         if(array_key_exists('id',$data)){
             $this->id = $data['id'];
@@ -38,7 +38,7 @@ class Bazar extends Connection{
         return $this;
     }
     
-    
+//----------Image Upload And array to string Conversion Solve-----------//      
     public function img(){
        if($_FILES['image'])
        {   
@@ -52,7 +52,7 @@ class Bazar extends Connection{
         //return $this;
     }
       
-    
+//----------Insert All data in Database-----------//   
     public function store(){
         try {
             $this->image = $_FILES['image']['name'];
@@ -82,7 +82,7 @@ class Bazar extends Connection{
         }
     }
     
-    
+//----------View All data on index page-----------//       
     public function index(){
         try {
             $query = ("SELECT * FROM `product`");
@@ -96,6 +96,8 @@ class Bazar extends Connection{
             die();
         }
     }
+    
+//----------View Single data on index page-----------//   
     public function view($id){
         try {
             $query = ("SELECT * FROM `product` WHERE id = :id");
@@ -111,23 +113,41 @@ class Bazar extends Connection{
         
     }
     
-    
+//----------Delet Single data on database-----------//     
     public function delete($id){
         try {
+            
+/*
+            $query = ("DELETE image FROM product WHERE id = :id");
+            $stmt = $this->con->prepare($query);
+            $stmt->execute();
+           if (is_file($this->image)) {
+
+               chmod($this->image, 0777);
+
+               if (unlink($this->image)) {
+                  echo 'File deleted';
+               } else {
+                  echo 'Cannot remove that file';
+               }
+
+            } else {
+              echo 'File does not exist';
+            }
+            
+            if ( is_file("view/admin/product/img/".$this->image) ) {
+              unlink('view/admin/product/img/'.$this->image);
+            }else{
+                echo "LOL";
+            }
+*/
+            
             $query = ("DELETE FROM `product` WHERE id = :id");
             $stmt = $this->con->prepare($query);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
             
-           /* $query = ("DELETE FROM `product` WHERE id = :id");
-            $stmt = $this->con->prepare($query);
-            $stmt->execute();
-            $stmt->fetch();
-            $image = $stmt['image'];
-             unlink('view/admin/product/img/'.$this->image);            
-*/
             
-
             if($stmt){
                 $_SESSION['delete'] = "DATA has been DELECTED";
                 header('location: index.php');
@@ -139,7 +159,7 @@ class Bazar extends Connection{
         //return $this;
     }
     
-    
+//----------Update Single data on database-----------//  
     public function update(){
         try {
             $this->image = $_FILES['image']['name'];
