@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2017 at 10:37 PM
+-- Generation Time: Oct 02, 2017 at 07:34 AM
 -- Server version: 10.1.22-MariaDB
 -- PHP Version: 7.1.4
 
@@ -42,12 +42,15 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `price`, `gender`, `detail`, `image`) VALUES
-(198, 'Jamdani', '5000', 'female', 'Reference site about Lorem Ipsum, giving information on its origins, ', '0034399_handloom-cotton-taant-shari-design-421.jpg'),
-(199, 'Imran', '100', 'male', 'Reference site about Lorem Ipsum, giving information on its origins, ', 'maxresdefault.jpg'),
-(200, 'Baby Frock', '200', 'baby', 'Reference site about Lorem Ipsum, giving information on its origins, ', '120G166.jpg'),
-(201, 'Shari', '5000', 'female', 'Reference site about Lorem Ipsum, giving information on its origins, ', '0046333_exclusive-shari-for-women-cp-892.jpeg'),
-(202, 'Jenes', '800', 'male', 'Reference site about Lorem Ipsum, giving information on its origins, ', 'HTB17TiOHXXXXXcoXFXXq6xXFXXXO.jpg'),
-(203, '3 Quater', '350', 'male', 'Reference site about Lorem Ipsum, giving information on its origins, ', 'Ladies-Pent-Dark-Blue-Ladies-Cotton-Jeans-Pent-Cover-min-1.jpg');
+(211, 'pent', '500', 'male', 'Reference site about Lorem Ipsum, giving information on its origins, ', '822466c375.jpg'),
+(212, 'Shari', '5000', 'female', 'Reference site about Lorem Ipsum, giving information on its origins, ', '5c8b3c8c11.jpeg'),
+(213, '3 Quater', '222', 'male', 'Reference site about Lorem Ipsum, giving information on its origins, ', '65dc6eeeea.jpg'),
+(214, 'Pent', '2500', 'male', 'Reference site about Lorem Ipsum, giving information on its origins, ', '0079890513.jpg'),
+(215, 'Jamdani', '5000', 'female', 'Reference site about Lorem Ipsum, giving information on its origins, ', '50079c0d3d.jpg'),
+(216, 'Baby Frock', '100', 'female', 'Reference site about Lorem Ipsum, giving information on its origins, ', '08a680b57b.jpg'),
+(217, 'Baby Frock', '200', 'baby', 'Reference site about Lorem Ipsum, giving information on its origins, ', 'ec5090492a.jpg'),
+(218, 'pent xl', '2500', 'male', 'Reference site about Lorem Ipsum, giving information on its origins, ', 'e0f6ffd0c1.jpg'),
+(219, 'Frock', '2500', 'female', 'Reference site about Lorem Ipsum, giving information on its origins, ', '316655523c.jpg');
 
 --
 -- Indexes for dumped tables
@@ -67,7 +70,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=204;COMMIT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=220;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

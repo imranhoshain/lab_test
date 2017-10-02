@@ -12,8 +12,7 @@ class Bazar extends Connection{
     private $price;
     private $gender;
     private $detail;
-    private $image;
-    private $tmp_name;  
+    private $image;     
     
 //----------Check All Array Key-----------//   
     public function set($data = array()){
@@ -38,32 +37,24 @@ class Bazar extends Connection{
         return $this;
     }
     
-//----------Image Upload And array to string Conversion Solve-----------//      
-    public function img(){
-       if($_FILES['image'])
-       {   
-            $this->tmp_name = addslashes(file_get_contents ($_FILES['image']['tmp_name']));            
-            $this->tmp_name = $_FILES['image']['tmp_name'];
-            $this->image = $_FILES['image']['name'];           
-           if($this->image){
-            move_uploaded_file($this->tmp_name, 'img/'.$this->image);
-        }
-       }
-        //return $this;
+//----------Image Upload Function-----------//      
+    public function upload(){
+        $tmp_name = $_FILES['image']['tmp_name'];
+        $img_name = $_FILES['image']['name'];
+        $genName = substr(md5(uniqid()),0,10);
+        $extName = explode('.',$img_name);
+        $finalext = end($extName);
+        $_POST['image'] = $genName.'.'.$finalext;
+        move_uploaded_file($tmp_name,'img/'.$_POST['image']);
+        return $_POST['image'];
     }
+    
       
 //----------Insert All data in Database-----------//   
     public function store(){
-        try {
-            $this->image = $_FILES['image']['name'];
+        try {            
             $query = ("INSERT INTO `product`(`name`,`price`,`gender`,`detail`,`image`) VALUES(:n,:p,:g,:d,:i)");
-            $stmt = $this->con->prepare($query);
-            /*$stmt->bindParam(':n', $this->name, PDO::PARAM_INT);
-            $stmt->bindParam(':p', $this->price, PDO::PARAM_INT);
-            $stmt->bindParam(':g', $this->gender, PDO::PARAM_INT);
-            $stmt->bindParam(':d', $this->detail, PDO::PARAM_INT);
-            $stmt->bindParam(':i', $this->image, PDO::PARAM_STR);
-            $stmt->execute($array);*/
+            $stmt = $this->con->prepare($query);           
             $result = $stmt->execute(array(
                 ':n' => $this->name,
                 ':p' => $this->price,
@@ -82,6 +73,7 @@ class Bazar extends Connection{
         }
     }
     
+     
 //----------View All data on index page-----------//       
     public function index(){
         try {
@@ -113,41 +105,31 @@ class Bazar extends Connection{
         
     }
     
-//----------Delet Single data on database-----------//     
-    public function delete($id){
+//----------Delet Image on Folder-----------//  
+    public function img_delete($id){
         try {
-            
-/*
-            $query = ("DELETE image FROM product WHERE id = :id");
-            $stmt = $this->con->prepare($query);
-            $stmt->execute();
-           if (is_file($this->image)) {
-
-               chmod($this->image, 0777);
-
-               if (unlink($this->image)) {
-                  echo 'File deleted';
-               } else {
-                  echo 'Cannot remove that file';
-               }
-
-            } else {
-              echo 'File does not exist';
-            }
-            
-            if ( is_file("view/admin/product/img/".$this->image) ) {
-              unlink('view/admin/product/img/'.$this->image);
-            }else{
-                echo "LOL";
-            }
-*/
-            
-            $query = ("DELETE FROM `product` WHERE id = :id");
+            $query = ("SELECT `image` FROM `product` WHERE id = :id");
             $stmt = $this->con->prepare($query);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
-            
-            
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
+            if(isset($data['image'])){
+            unlink('img/'.$data['image']);
+            }
+        }
+        catch (PDOException $e){
+            print "Error!: " .$e->getMessage . "</br>";
+            die();
+        }
+    }
+    
+//----------Delet Single data on database-----------//     
+    public function delete($id){
+        try {
+            $query = ("DELETE FROM `product` WHERE id = :id");
+            $stmt = $this->con->prepare($query);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();            
             if($stmt){
                 $_SESSION['delete'] = "DATA has been DELECTED";
                 header('location: index.php');

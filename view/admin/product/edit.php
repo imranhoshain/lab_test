@@ -51,7 +51,7 @@ $product = $bazar->view($_GET['id']);
                                         <img src="view/admin/product/img/<?php echo $product['image'] ?>" alt="" width="100"><br>
                                         <input type="file" name="image"/>
                                     </div>
-                                    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" name="submit" class="btn btn-primary">Update</button>
                                     <button type="reset" name="reset" class="btn btn-danger">Reset</button>
                                 </form>
                             </div>
