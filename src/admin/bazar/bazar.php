@@ -99,24 +99,7 @@ class Bazar extends Connection{
         
     }
     
-//----------Delet Image on Folder-----------//  
-    /*public function img_delete($id){
-        try {
-            $query = ("SELECT `image` FROM `product` WHERE id = :id");
-            $stmt = $this->con->prepare($query);
-            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-            $stmt->execute();
-            $data = $stmt->fetch(PDO::FETCH_ASSOC);
-            if(isset($data['image'])){
-            unlink('img/'.$data['image']);
-            }
-        }
-        catch (PDOException $e){
-            print "Error!: " .$e->getMessage . "</br>";
-            die();
-        }
-    }*/
-    
+
 //----------Delet Single data on database-----------//     
     public function delete($id){
         try {
@@ -138,7 +121,7 @@ class Bazar extends Connection{
 //----------Update Single data on database-----------//  
     public function update(){
         try {            
-            $query = ("UPDATE `product` SET `name` = :name, `price` = :price, `gender` = :gender, `detail` = :detail, `image` = :image WHERE `product`.`id` = :id;");
+            $query = ("UPDATE `product` SET `name` = :name, `price` = :price, `gender` = :gender, `detail` = :detail, `image` = :image WHERE `product`.`unique_id` = :id;");
             $stmt = $this->con->prepare($query);
             $stmt->bindValue(':name', $this->name, PDO::PARAM_INT);         
             $stmt->bindValue(':price', $this->price, PDO::PARAM_INT);         

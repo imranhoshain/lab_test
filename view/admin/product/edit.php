@@ -26,7 +26,7 @@ $product = $bazar->view($_GET['id']);
                                     <div class="form-group">
                                         <label>Product Title</label>
                                         <input type="text" value="<?php echo $product['name']; ?>" name="name" class="form-control">
-                                        <input type="hidden" value="<?php echo $product['id']; ?>" name="id" class="form-control">
+                                        <input type="hidden" value="<?php echo $product['unique_id']; ?>" name="id" class="form-control">
                                         <input type="hidden" value="<?php echo $product['image']; ?>" name="image" class="form-control">
                                     </div>
                                     <div class="form-group">
