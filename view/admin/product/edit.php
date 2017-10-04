@@ -27,6 +27,7 @@ $product = $bazar->view($_GET['id']);
                                         <label>Product Title</label>
                                         <input type="text" value="<?php echo $product['name']; ?>" name="name" class="form-control">
                                         <input type="hidden" value="<?php echo $product['id']; ?>" name="id" class="form-control">
+                                        <input type="hidden" value="<?php echo $product['image']; ?>" name="image" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label>Price</label>
@@ -48,7 +49,7 @@ $product = $bazar->view($_GET['id']);
 
                                     <div class="form-group">
                                         <label>Upload Image</label><br>
-                                        <img src="view/admin/product/img/<?php echo $product['image'] ?>" alt="" width="100"><br>
+                                        <img src="assets/admin/uploads/<?php echo $product['image'] ?>" alt="" width="100"><br>
                                         <input type="file" name="image"/>
                                     </div>
                                     <button type="submit" name="submit" class="btn btn-primary">Update</button>

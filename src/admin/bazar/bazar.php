@@ -37,30 +37,19 @@ class Bazar extends Connection{
         return $this;
     }
     
-//----------Image Upload Function-----------//      
-    public function upload(){
-        $tmp_name = $_FILES['image']['tmp_name'];
-        $img_name = $_FILES['image']['name'];
-        $genName = substr(md5(uniqid()),0,10);
-        $extName = explode('.',$img_name);
-        $finalext = end($extName);
-        $_POST['image'] = $genName.'.'.$finalext;
-        move_uploaded_file($tmp_name,'img/'.$_POST['image']);
-        return $_POST['image'];
-    }
-    
-      
+  
 //----------Insert All data in Database-----------//   
     public function store(){
         try {            
-            $query = ("INSERT INTO `product`(`name`,`price`,`gender`,`detail`,`image`) VALUES(:n,:p,:g,:d,:i)");
+            $query = ("INSERT INTO `product`(`name`,`price`,`gender`,`detail`,`image`,`unique_id`) VALUES(:n,:p,:g,:d,:i,:u)");
             $stmt = $this->con->prepare($query);           
             $result = $stmt->execute(array(
                 ':n' => $this->name,
                 ':p' => $this->price,
                 ':g' => $this->gender,
                 ':d' => $this->detail,
-                ':i' => $this->image
+                ':i' => $this->image,
+                ':u' => md5(time())
             ));
             if($result){
                 $_SESSION['store'] = "Data successfully Inserted";
@@ -92,10 +81,15 @@ class Bazar extends Connection{
 //----------View Single data on index page-----------//   
     public function view($id){
         try {
-            $query = ("SELECT * FROM `product` WHERE id = :id");
+            $query = ("SELECT * FROM `product` WHERE unique_id = :id");
             $stmt = $this->con->prepare($query);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
+            if($stmt){
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+            }else{
+                header('location: index.php');
+            }
             return $stmt->fetch(PDO::FETCH_ASSOC);
         }
         catch (PDOException $e){
@@ -106,7 +100,7 @@ class Bazar extends Connection{
     }
     
 //----------Delet Image on Folder-----------//  
-    public function img_delete($id){
+    /*public function img_delete($id){
         try {
             $query = ("SELECT `image` FROM `product` WHERE id = :id");
             $stmt = $this->con->prepare($query);
@@ -121,12 +115,12 @@ class Bazar extends Connection{
             print "Error!: " .$e->getMessage . "</br>";
             die();
         }
-    }
+    }*/
     
 //----------Delet Single data on database-----------//     
     public function delete($id){
         try {
-            $query = ("DELETE FROM `product` WHERE id = :id");
+            $query = ("DELETE FROM `product` WHERE unique_id = :id");
             $stmt = $this->con->prepare($query);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();            
@@ -143,8 +137,7 @@ class Bazar extends Connection{
     
 //----------Update Single data on database-----------//  
     public function update(){
-        try {
-            $this->image = $_FILES['image']['name'];
+        try {            
             $query = ("UPDATE `product` SET `name` = :name, `price` = :price, `gender` = :gender, `detail` = :detail, `image` = :image WHERE `product`.`id` = :id;");
             $stmt = $this->con->prepare($query);
             $stmt->bindValue(':name', $this->name, PDO::PARAM_INT);         

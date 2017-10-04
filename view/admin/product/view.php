@@ -20,7 +20,7 @@ $product = $bazar->view($_GET['id']);
                 </div>
                 <div class="panel-body">
                     <span class="thumbnail">
-                    <img src="view/admin/product/img/<?php echo $product['image'];?>" alt="...">
+                    <img src="assets/admin/uploads/<?php echo $product['image'];?>" alt="...">
                     <h4><?php echo $product['name'];?></h4>
                     <div class="ratings">
                     <span class="glyphicon glyphicon-star"></span>
@@ -48,8 +48,8 @@ $product = $bazar->view($_GET['id']);
 
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1">
-                        <a href="view/admin/product/delete.php?id=<?php echo $product['id'];?>" class="btn btn-danger">Delete</a>
-                        <a href="view/admin/product/edit.php?id=<?php echo $product['id'];?>" class="btn btn-primary">Edit</a>
+                        <a href="view/admin/product/delete.php?id=<?php echo $product['unique_id'];?>" class="btn btn-danger">Delete</a>
+                        <a href="view/admin/product/edit.php?id=<?php echo $product['unique_id'];?>" class="btn btn-primary">Edit</a>
                         <a href="index.php" class="btn btn-default">Back</a>
 
                     </div>

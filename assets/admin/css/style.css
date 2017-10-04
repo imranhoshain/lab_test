@@ -6,3 +6,95 @@
     height: 260px;
     width: 94%;
 }
+
+
+/*---------------------------------------------------
+            24.Error area css
+---------------------------------------------------*/
+
+.error-area {}
+
+.error-text {
+    text-align: center
+}
+
+.error-text h1 {
+    font-size: 100px;
+    margin: 0
+}
+
+.error-text p {}
+
+.error-text p span {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+a.error-btn {
+    color: #fff;
+    font-size: 14px;
+    display: inline-block;
+    padding: 10px 30px;
+    border-radius: 3px;
+    font-weight: 500;
+}
+
+a.error-btn:hover {}
+
+
+/*---------------------------------------------------
+        25. Contact area css
+---------------------------------------------------*/
+
+.contact-area {}
+
+.contact-form-wrap {}
+
+.contact-form-wrap input[type="text"],
+.contact-form-wrap input[type="email"],
+.contact-form-wrap textarea {
+    padding: 10px;
+    text-transform: capitalize;
+    border: 1px solid #ddd;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.contact-form-wrap input:focus,
+.contact-form-wrap textarea:focus {
+    border: 1px solid transparent
+}
+
+.contact-form-wrap textarea {
+    height: 200px;
+    resize: none;
+}
+
+.contact-form-wrap input[type="submit"] {
+    color: #fff;
+    border: none;
+    display: inline-block;
+    padding: 12px 24px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    -webkit-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s
+}
+
+.contact-form-wrap input[type="submit"]:hover {
+    background-color: #333;
+}
+
+.contact-title {
+    font-size: 23px;
+    margin-bottom: 25px;
+}
+
+.contact-title i {
+    margin-right: 10px
+}
+
+#googleMap {
+    height: 400px;
+    background-color: #F4F4F4
+}

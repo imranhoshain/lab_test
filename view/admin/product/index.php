@@ -36,7 +36,7 @@ $data = $bazar->index();
             ?>
                 <div class="col-md-3 col-sm-6">
                     <span class="thumbnail layer">
-      			<img src="view/admin/product/img/<?php echo $product['image'];?>" alt="...">
+      			<img src="assets/admin/uploads/<?php echo $product['image'];?>" alt="...">
       			<h4><?php echo $product['name'];?></h4>
       			<div class="ratings">
                     <span class="glyphicon glyphicon-star"></span>
@@ -56,7 +56,7 @@ $data = $bazar->index();
                         </p>
                     </div>
                     <div class="col-md-6 col-sm-6">
-                        <a href="view/admin/product/view.php?id=<?php echo $product['id'];?>"> <button class="btn btn-info right"> Details</button></a>
+                        <a href="view/admin/product/view.php?id=<?php echo $product['unique_id'];?>"> <button class="btn btn-info right"> Details</button></a>
                     </div>
 
                 </div>
