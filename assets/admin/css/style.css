@@ -1,5 +1,11 @@
-.thumbnail.layer {
+.thumbnail{
+    
+    margin: 10px;
+}
+
+.layer {
     height: 480px;
+    
 }
 
 .layer img {

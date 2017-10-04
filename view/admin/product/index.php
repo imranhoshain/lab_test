@@ -34,8 +34,8 @@ $data = $bazar->index();
                 foreach($data as $product){
                 $sl++;
             ?>
-                <div class="col-md-3 col-sm-6">
-                    <span class="thumbnail layer">
+                <div class="col-md-3 col-sm-6 thumbnail">
+                    <span class="layer">
       			<img src="assets/admin/uploads/<?php echo $product['image'];?>" alt="...">
       			<h4><?php echo $product['name'];?></h4>
       			<div class="ratings">
@@ -55,8 +55,12 @@ $data = $bazar->index();
                             <?php echo $product['price'];?>
                         </p>
                     </div>
-                    <div class="col-md-6 col-sm-6">
-                        <a href="view/admin/product/view.php?id=<?php echo $product['unique_id'];?>"> <button class="btn btn-info right"> Details</button></a>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <a data-toggle="modal" data-target="#myModal" data-id="<?php echo $product['unique_id']?>" class="btn btn-danger delete" href="javaScript:void(0)" >Delete</a>
+                        <a href="view/admin/product/edit.php?id=<?php echo $product['unique_id'];?>" class="btn btn-primary">Edit</a>
+                        <a data-toggle="modal" data-target="#myModal" href="view/admin/product/view.php?id=<?php echo $product['unique_id'];?>"> <button class="btn btn-info right"> Details</button></a>
                     </div>
 
                 </div>
@@ -64,10 +68,32 @@ $data = $bazar->index();
         </div>
         <?php }?>
         <!-- END PRODUCTS -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <form action="view/admin/product/delete.php" method="GET">
+               <input type="hidden" name="id" id="delete" />
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="myModalLabel"><strong>Are you sure delete your Prodcuct?</strong></h4>
+                    </div>
+                   
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                        <input type="submit" class="btn btn-danger" value="Yes" />
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+            </form>
+        </div>
+        <!-- /.modal -->
     </div>
     <!-- /.row -->
     </div>
 
     <?php
 include_once '../include/footer.php';
+//
 ?>
